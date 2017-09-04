@@ -1,3 +1,4 @@
+
 -- Linear Regression module
 module LinearReg where
 
@@ -18,10 +19,18 @@ costDerivative :: ([Double] -> Double) -- ^ The hypothesis function
                -> [[Double]]           -- ^ Records of training examples
                -> [Double]             -- ^ y TODO: name this
                -> [Double]             -- ^ List of derivatives TODO: name this
-costDerivative h xss y = let m = length xss
-                             magicV = difLists (map h xss) y
-                         in
-                           map (\der -> der / (fromIntegral m)) $
-                           foldl sumLists (replicate m 0.0) $
-                           map (prdLists magicV) xss
+costDerivative h xss ys = let m = length xss
+                              magicV = difLists (map h xss) ys
+                          in
+                            map (\der -> der / (fromIntegral m)) $
+                            foldl sumLists (replicate m 0.0) $
+                            map (prdLists magicV) xss
 
+updateHypCoeff :: [Double]   -- ^ Actual hypothesis coefficients
+               -> Double     -- ^ Learning rate
+               -> [[Double]] -- ^ Records of training examples
+               -> [Double]   -- ^ y TODO: name this
+               -> [Double]   -- ^ updated hypothesis coefficients
+updateHypCoeff thetas alpha xss ys = zipWith (\a b -> a - alpha * b) thetas $
+  costDerivative (dotProduct thetas) xss ys
+  
