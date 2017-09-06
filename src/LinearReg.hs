@@ -26,11 +26,17 @@ costDerivative h xss ys = let m = length xss
                             foldl sumLists (replicate m 0.0) $
                             map (prdLists magicV) xss
 
-updateHypCoeff :: [Double]   -- ^ Actual hypothesis coefficients
+updateHypCoeff :: Integer    -- ^ Number of iterations
+               -> [Double]   -- ^ Actual hypothesis coefficients
                -> Double     -- ^ Learning rate
                -> [[Double]] -- ^ Records of training examples
                -> [Double]   -- ^ y TODO: name this
                -> [Double]   -- ^ updated hypothesis coefficients
-updateHypCoeff thetas alpha xss ys = zipWith (\a b -> a - alpha * b) thetas $
-  costDerivative (dotProduct thetas) xss ys
-  
+updateHypCoeff niter thetas alpha xss ys
+  | niter > 0 = updateHypCoeff (niter-1) thetas' alpha xss ys
+  | otherwise = thetas
+  where
+    thetas' = zipWith (\a b -> a - alpha * b) thetas $
+              costDerivative (dotProduct thetas) xss ys
+
+
