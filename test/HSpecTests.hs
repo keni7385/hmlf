@@ -1,19 +1,18 @@
 -- Test Linear Regression
-module Main where
+module LinearRegSpec (main, spec)  where
 
 import LinearReg
-import Utils
 import Test.Hspec
 import Test.QuickCheck
 
+-- Main is here to let this file run in its own
+-- It's not needed by Spec.hs for the specs discory
 main :: IO ()
-main = hspec $ do
+main = hspec spec
 
-  describe "Linear regression module tests" $ do
+spec :: Spec
+spec = do
+  describe "LinearReg" $ do
     it "dotProduct [1.0, 2.0, 3.0] [2.0, 2.0, 2.0] is supposed to be 12.0" $ do
       dotProduct [1.0, 2.0, 3.0] [2.0, 2.0, 2.0] `shouldBe` 12.0
- 
-  describe "Utils module tests" $ do
-    it "parseCSV returns list of lists of strings" $ do
-      parseCSV "lorem,ipsum\ndolor,sit,amet\r\nconsectetur\n\radipiscing,elit\r" `shouldBe` Right [["lorem", "ipsum"], ["dolor", "sit", "amet"], ["consectetur"], ["adipiscing", "elit"]]
 
