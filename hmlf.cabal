@@ -16,16 +16,16 @@ extra-source-files:  ChangeLog.md
 cabal-version:       >=1.10
 
 library
-  exposed-modules: LinearReg, Utils    
+  exposed-modules:   LinearReg, Utils    
   -- other-modules:       
   -- other-extensions:    
-  build-depends:       base >=4.9 && <4.10, parsec
-  hs-source-dirs:      src
-  default-language:    Haskell2010
+  build-depends:     base
+  hs-source-dirs:    src
+  default-language:  Haskell2010
 
 test-suite tests
-  hs-source-dirs: test
-  type: exitcode-stdio-1.0
-  main-is: HSpecTests.hs
-  build-depends: QuickCheck, base, hmlf, hspec
-  default-language: Haskell2010
+  hs-source-dirs:    test
+  type:              exitcode-stdio-1.0
+  main-is:           HSpecTests.hs
+  build-depends:     QuickCheck, base, hmlf, hspec
+  default-language:  Haskell2010
