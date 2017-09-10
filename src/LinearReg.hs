@@ -2,17 +2,17 @@
 -- Linear Regression module
 module LinearReg where
 
--- | Dot product for lists of Doubles, used as hypothesis for linear regressions
+-- |Dot product for lists of Doubles, used as hypothesis for linear regressions
 dotProduct :: [Double] -> [Double] -> Double
 dotProduct ds ds' = sum $ prdLists ds ds'
 
--- | Sum of two lists
+-- |Sum of two lists
 sumLists xs ys = zipWith (+) xs ys
 
--- | Difference of two lists
+-- |Difference of two lists
 difLists xs ys = zipWith (-) xs ys
 
--- | Product of two lists
+-- |Product of two lists
 prdLists xs ys = zipWith (*) xs ys
 
 costDerivative :: ([Double] -> Double) -- ^ The hypothesis function
@@ -26,6 +26,8 @@ costDerivative h xss ys = let m = length xss
                             foldl sumLists (replicate m 0.0) $
                             map (prdLists magicV) xss
 
+-- |(Multi)linear regression training function
+-- Compute the hypothesis coefficient using gradient descent. The xss parameter must be a list of lists, where the i-th list represents the value of i-th feauture for every dataset record.
 updateHypCoeff :: Integer    -- ^ Number of iterations
                -> [Double]   -- ^ Actual hypothesis coefficients
                -> Double     -- ^ Learning rate
