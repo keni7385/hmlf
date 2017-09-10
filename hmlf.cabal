@@ -19,7 +19,7 @@ library
   exposed-modules:   LinearReg, Utils    
   -- other-modules:       
   -- other-extensions:    
-  build-depends:     base
+  build-depends:     base, parsec
   hs-source-dirs:    src
   default-language:  Haskell2010
 
