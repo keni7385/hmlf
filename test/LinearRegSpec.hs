@@ -12,7 +12,7 @@ main = hspec spec
 
 spec :: Spec
 spec = do
-  describe "LinearReg" $ do
+  describe "Linear algebra operations" $ do
     it "dotProduct [1.0, 2.0, 3.0] [2.0, 2.0, 2.0] is supposed to be 12.0" $ do
       dotProduct [1.0, 2.0, 3.0] [2.0, 2.0, 2.0] `shouldBe` 12.0
 
